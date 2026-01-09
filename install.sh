@@ -14,4 +14,8 @@ mkdir -p ~/.config
 ln -sf "$DOTFILES_DIR/starship/starship.toml" ~/.config/starship.toml
 echo "✓ Starship config linked"
 
+# Git
+ln -sf "$DOTFILES_DIR/git/.gitconfig" ~/.gitconfig
+echo "✓ Git config linked"
+
 echo "=== Done! ==="

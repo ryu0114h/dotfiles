@@ -1,0 +1,16 @@
+[user]
+    name = Ryu Hoshino
+    email = ryu0114h@gmail.com
+
+[init]
+    defaultBranch = main
+
+[alias]
+    b = branch
+    pu = push
+    puf = push -f
+    pl = pull
+    c = commit --message
+    ca = commit --all --message
+    ch = checkout
+    chb = checkout -b

@@ -1,4 +1,5 @@
 theme = Dracula
+macos-titlebar-style = tabs
 
 # 背景透過
 background-opacity = 0.90

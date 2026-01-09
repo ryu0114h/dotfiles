@@ -1,4 +1,17 @@
 theme = Dracula
 
+# 背景透過
+background-opacity = 0.90
+background-blur-radius = 20
+
+# ウィンドウ状態を保存（次回起動時に復元）
+window-save-state = always
+
 # Quick Terminal（どこからでも F12 で呼び出し）
 keybind = global:f12=toggle_quick_terminal
+
+# 分割間移動（Vim風）
+keybind = cmd+h=goto_split:left
+keybind = cmd+j=goto_split:bottom
+keybind = cmd+k=goto_split:top
+keybind = cmd+l=goto_split:right

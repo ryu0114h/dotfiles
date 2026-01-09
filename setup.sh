@@ -1,0 +1,31 @@
+#!/bin/bash
+
+echo "=== dotfiles setup ==="
+
+# Homebrew
+if ! command -v brew &> /dev/null; then
+    echo "Installing Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+    echo "✓ Homebrew already installed"
+fi
+
+# Ghostty
+if ! brew list --cask ghostty &> /dev/null; then
+    echo "Installing Ghostty..."
+    brew install --cask ghostty
+else
+    echo "✓ Ghostty already installed"
+fi
+
+# Starship
+if ! command -v starship &> /dev/null; then
+    echo "Installing Starship..."
+    brew install starship
+else
+    echo "✓ Starship already installed"
+fi
+
+echo ""
+echo "=== Setup complete! ==="
+echo "Next: run ./install.sh to create symlinks"

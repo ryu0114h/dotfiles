@@ -1,0 +1,35 @@
+# シンプル設定
+format = """
+$directory\
+$git_branch\
+$git_status\
+$character"""
+
+# ディレクトリ
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+
+# gitブランチ
+[git_branch]
+format = "[$branch]($style) "
+style = "purple"
+
+# gitステータス
+[git_status]
+format = "[$all_status$ahead_behind]($style) "
+
+# プロンプト記号
+[character]
+success_symbol = "[❯](green)"
+error_symbol = "[❯](red)"
+
+# 不要なものを無効化
+[aws]
+disabled = true
+
+[gcloud]
+disabled = true
+
+[kubernetes]
+disabled = true

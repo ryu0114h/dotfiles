@@ -1,1 +1,4 @@
 theme = Dracula
+
+# Quick Terminal（どこからでも F12 で呼び出し）
+keybind = global:f12=toggle_quick_terminal

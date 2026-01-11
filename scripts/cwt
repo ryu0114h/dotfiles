@@ -1,0 +1,147 @@
+#!/bin/bash
+# cwt - Claude Worktrees
+# fzf で worktree を選択し、tmux で Claude Code を並列起動
+#
+# Usage:
+#   cwt              fzf で worktree 選択 → Claude Code 起動
+#   cwt -n <name>    新規 worktree 作成後、選択画面へ
+#   cwt -a           既存セッションに再接続
+#   cwt -k           セッション終了
+#   cwt -l           worktree 一覧表示
+#   cwt -h, --help   ヘルプ表示
+
+set -e
+
+# ヘルプ表示（リポジトリ外でも使えるよう先に処理）
+if [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+  cat << 'EOF'
+cwt - Claude Worktrees
+
+Usage:
+  cwt              fzf で worktree 選択 → Claude Code 起動
+  cwt -n <name>    新規 worktree 作成後、選択画面へ
+  cwt -a           既存セッションに再接続
+  cwt -k           セッション終了
+  cwt -l           worktree 一覧表示
+  cwt -h, --help   このヘルプを表示
+
+tmux 操作:
+  Ctrl+a h/j/k/l   ペイン移動
+  Ctrl+a v/s       縦/横分割
+  Ctrl+a z         ズーム切替
+  Ctrl+a d         デタッチ
+EOF
+  exit 0
+fi
+
+# リポジトリのルートを取得（worktree 内からでも正しく動作）
+git_common_dir=$(git rev-parse --git-common-dir 2>/dev/null)
+if [ -z "$git_common_dir" ]; then
+  echo "Error: Not in a git repository"
+  exit 1
+fi
+
+# .git の場合は現在のリポジトリルート、それ以外は親ディレクトリ
+if [ "$git_common_dir" = ".git" ]; then
+  repo_root=$(git rev-parse --show-toplevel)
+else
+  repo_root=$(dirname "$git_common_dir")
+fi
+
+repo_name=$(basename "$repo_root")
+cd "$repo_root" || exit 1
+
+# オプション処理
+case "${1:-}" in
+  -n)
+    # 新規 worktree 作成
+    name="${2:?Usage: cwt -n <worktree-name>}"
+    wt_path="${repo_root}.worktrees/${name}"
+    mkdir -p "${repo_root}.worktrees"
+    if git worktree add -b "$name" "$wt_path" 2>/dev/null; then
+      echo "Created worktree with new branch: $wt_path"
+    elif git worktree add "$wt_path" "$name" 2>/dev/null; then
+      echo "Created worktree from existing branch: $wt_path"
+    else
+      echo "Error: Failed to create worktree"
+      exit 1
+    fi
+    exec "$0"  # 再帰呼び出しで選択画面へ
+    ;;
+  -a)
+    # 既存セッションに再接続
+    if tmux has-session -t "$repo_name" 2>/dev/null; then
+      tmux attach -t "$repo_name"
+    else
+      echo "No session found: $repo_name"
+      echo "Available sessions:"
+      tmux list-sessions 2>/dev/null || echo "  (none)"
+    fi
+    exit 0
+    ;;
+  -k)
+    # セッション終了
+    if tmux kill-session -t "$repo_name" 2>/dev/null; then
+      echo "Killed session: $repo_name"
+    else
+      echo "No session to kill: $repo_name"
+    fi
+    exit 0
+    ;;
+  -l)
+    # worktree 一覧表示
+    git worktree list
+    exit 0
+    ;;
+esac
+
+# 依存チェック
+if ! command -v fzf &> /dev/null; then
+  echo "Error: fzf is required. Install with: brew install fzf"
+  exit 1
+fi
+
+if ! command -v tmux &> /dev/null; then
+  echo "Error: tmux is required. Install with: brew install tmux"
+  exit 1
+fi
+
+# fzf で複数選択（Tab で選択、Enter で確定）
+selected=($(git worktree list | \
+  fzf --multi \
+      --prompt="Select worktrees (Tab to select, Enter to confirm)> " \
+      --preview='cd {1} && git log --oneline -5 2>/dev/null || echo "No commits"' \
+      --preview-window=right:40% | \
+  awk '{print $1}'))
+
+if [ ${#selected[@]} -eq 0 ]; then
+  echo "No worktrees selected"
+  exit 1
+fi
+
+# 既存セッションがあれば確認
+if tmux has-session -t "$repo_name" 2>/dev/null; then
+  read -p "Session '$repo_name' already exists. Kill and recreate? [y/N] " -n 1 -r
+  echo
+  if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    echo "Attaching to existing session..."
+    tmux attach -t "$repo_name"
+    exit 0
+  fi
+  tmux kill-session -t "$repo_name"
+fi
+
+# 最初の worktree でセッション作成
+tmux new-session -d -s "$repo_name" -c "${selected[0]}"
+tmux send-keys -t "$repo_name" "claude" Enter
+
+# 残りの worktree をペインとして追加
+for wt in "${selected[@]:1}"; do
+  tmux split-window -t "$repo_name" -h -c "$wt"
+  tmux send-keys -t "$repo_name" "claude" Enter
+  tmux select-layout -t "$repo_name" tiled
+done
+
+# セッションにアタッチ
+echo "Starting Claude Code in ${#selected[@]} worktree(s)..."
+tmux attach -t "$repo_name"

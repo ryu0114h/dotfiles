@@ -26,6 +26,30 @@ else
     echo "✓ Starship already installed"
 fi
 
+# tmux
+if ! command -v tmux &> /dev/null; then
+    echo "Installing tmux..."
+    brew install tmux
+else
+    echo "✓ tmux already installed"
+fi
+
+# fzf
+if ! command -v fzf &> /dev/null; then
+    echo "Installing fzf..."
+    brew install fzf
+else
+    echo "✓ fzf already installed"
+fi
+
+# Sheldon
+if ! command -v sheldon &> /dev/null; then
+    echo "Installing Sheldon..."
+    brew install sheldon
+else
+    echo "✓ Sheldon already installed"
+fi
+
 echo ""
 echo "=== Setup complete! ==="
 echo "Next: run ./install.sh to create symlinks"

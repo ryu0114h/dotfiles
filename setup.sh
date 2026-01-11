@@ -50,6 +50,14 @@ else
     echo "✓ Sheldon already installed"
 fi
 
+# zoxide
+if ! command -v zoxide &> /dev/null; then
+    echo "Installing zoxide..."
+    brew install zoxide
+else
+    echo "✓ zoxide already installed"
+fi
+
 echo ""
 echo "=== Setup complete! ==="
 echo "Next: run ./install.sh to create symlinks"

@@ -34,6 +34,10 @@ github = "zsh-users/zsh-history-substring-search"
 # Productivity
 # =============================================================================
 
+# Abbreviations (like fish shell)
+[plugins.zsh-abbr]
+github = "olets/zsh-abbr"
+
 # Replace tab completion with fzf (interactive fuzzy finder)
 [plugins.fzf-tab]
 github = "Aloxaf/fzf-tab"

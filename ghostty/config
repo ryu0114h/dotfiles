@@ -1,5 +1,6 @@
 theme = Dracula
 macos-titlebar-style = tabs
+macos-option-as-alt = true
 
 # 背景透過
 background-opacity = 0.90

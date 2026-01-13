@@ -14,3 +14,6 @@
     ca = commit --all --message
     ch = checkout
     chb = checkout -b
+
+[include]
+    path = ~/.gitconfig.local

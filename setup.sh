@@ -58,6 +58,14 @@ else
     echo "✓ zoxide already installed"
 fi
 
+# mise
+if ! command -v mise &> /dev/null; then
+    echo "Installing mise..."
+    brew install mise
+else
+    echo "✓ mise already installed"
+fi
+
 echo ""
 echo "=== Setup complete! ==="
 echo "Next: run ./install.sh to create symlinks"

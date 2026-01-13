@@ -142,6 +142,11 @@ for wt in "${selected[@]:1}"; do
   tmux select-layout -t "$repo_name" tiled
 done
 
+# 最終レイアウト調整（3ペイン以下は横並び）
+if [ ${#selected[@]} -le 3 ]; then
+  tmux select-layout -t "$repo_name" even-horizontal
+fi
+
 # セッションにアタッチ
 echo "Starting Claude Code in ${#selected[@]} worktree(s)..."
 tmux attach -t "$repo_name"

@@ -1,6 +1,5 @@
 theme = Dracula
 macos-titlebar-style = tabs
-macos-option-as-alt = true
 
 # 選択時に自動でクリップボードにコピー
 copy-on-select = clipboard

@@ -62,22 +62,22 @@ echo "✓ mise config linked"
 # Claude Code
 mkdir -p ~/.claude
 backup_if_exists ~/.claude/settings.json
-ln -sf "$DOTFILES_DIR/.claude/settings.json" ~/.claude/settings.json
+ln -sf "$DOTFILES_DIR/claude/settings.json" ~/.claude/settings.json
 echo "✓ Claude Code config linked"
 
 # Claude Code plugins
-if command -v claude &> /dev/null && [ -f "$DOTFILES_DIR/.claude/plugins.txt" ]; then
+if command -v claude &> /dev/null && [ -f "$DOTFILES_DIR/claude/plugins.txt" ]; then
     while read -r plugin; do
         [ -n "$plugin" ] && claude plugin install "$plugin" --scope user 2>/dev/null || true
-    done < "$DOTFILES_DIR/.claude/plugins.txt"
+    done < "$DOTFILES_DIR/claude/plugins.txt"
     echo "✓ Claude Code plugins installed"
 fi
 
 # Claude Code MCP servers
-if command -v claude &> /dev/null && [ -f "$DOTFILES_DIR/.claude/mcp-servers.txt" ]; then
+if command -v claude &> /dev/null && [ -f "$DOTFILES_DIR/claude/mcp-servers.txt" ]; then
     while IFS='|' read -r name cmd; do
         [ -n "$name" ] && claude mcp add "$name" --scope user -- $cmd 2>/dev/null || true
-    done < "$DOTFILES_DIR/.claude/mcp-servers.txt"
+    done < "$DOTFILES_DIR/claude/mcp-servers.txt"
     echo "✓ Claude Code MCP servers configured"
 fi
 

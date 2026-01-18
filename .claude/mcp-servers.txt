@@ -1,0 +1,4 @@
+sequential-thinking|npx -y @modelcontextprotocol/server-sequential-thinking
+notionApi|npx -y @notionhq/notion-mcp-server
+mcp-deepwiki|npx -y mcp-deepwiki@latest
+terraform|docker run -i --rm hashicorp/terraform-mcp-server

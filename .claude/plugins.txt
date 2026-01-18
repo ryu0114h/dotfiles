@@ -8,3 +8,5 @@ feature-dev@claude-plugins-official
 context7@claude-plugins-official
 playwright@claude-plugins-official
 serena@claude-plugins-official
+security-guidance@claude-plugins-official
+code-simplifier@claude-plugins-official

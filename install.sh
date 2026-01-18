@@ -53,6 +53,20 @@ backup_if_exists ~/.config/sheldon/plugins.toml
 ln -sf "$DOTFILES_DIR/sheldon/plugins.toml" ~/.config/sheldon/plugins.toml
 echo "✓ Sheldon config linked"
 
+# Claude Code
+mkdir -p ~/.claude
+backup_if_exists ~/.claude/settings.json
+ln -sf "$DOTFILES_DIR/.claude/settings.json" ~/.claude/settings.json
+echo "✓ Claude Code config linked"
+
+# Claude Code plugins
+if command -v claude &> /dev/null && [ -f "$DOTFILES_DIR/.claude/plugins.txt" ]; then
+    while read -r plugin; do
+        [ -n "$plugin" ] && claude plugin install "$plugin" --scope user 2>/dev/null || true
+    done < "$DOTFILES_DIR/.claude/plugins.txt"
+    echo "✓ Claude Code plugins installed"
+fi
+
 # PATH に ~/.local/bin を追加するよう案内
 if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
     echo ""

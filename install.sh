@@ -56,7 +56,7 @@ echo "✓ Sheldon config linked"
 # mise
 mkdir -p ~/.config/mise
 backup_if_exists ~/.config/mise/config.toml
-ln -sf "$DOTFILES_DIR/.config/mise/config.toml" ~/.config/mise/config.toml
+ln -sf "$DOTFILES_DIR/mise/config.toml" ~/.config/mise/config.toml
 echo "✓ mise config linked"
 
 # Claude Code

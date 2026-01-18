@@ -53,6 +53,12 @@ backup_if_exists ~/.config/sheldon/plugins.toml
 ln -sf "$DOTFILES_DIR/sheldon/plugins.toml" ~/.config/sheldon/plugins.toml
 echo "✓ Sheldon config linked"
 
+# mise
+mkdir -p ~/.config/mise
+backup_if_exists ~/.config/mise/config.toml
+ln -sf "$DOTFILES_DIR/.config/mise/config.toml" ~/.config/mise/config.toml
+echo "✓ mise config linked"
+
 # Claude Code
 mkdir -p ~/.claude
 backup_if_exists ~/.claude/settings.json

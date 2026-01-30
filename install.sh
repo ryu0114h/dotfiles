@@ -59,17 +59,22 @@ backup_if_exists ~/.config/mise/config.toml
 ln -sf "$DOTFILES_DIR/mise/config.toml" ~/.config/mise/config.toml
 echo "✓ mise config linked"
 
+# Serena
+mkdir -p ~/.serena
+backup_if_exists ~/.serena/serena_config.yml
+ln -sf "$DOTFILES_DIR/serena/serena_config.yml" ~/.serena/serena_config.yml
+echo "✓ Serena config linked"
+
 # Claude Code
 mkdir -p ~/.claude
 backup_if_exists ~/.claude/settings.json
 ln -sf "$DOTFILES_DIR/claude/settings.json" ~/.claude/settings.json
 echo "✓ Claude Code config linked"
 
-# Serena
-mkdir -p ~/.serena
-backup_if_exists ~/.serena/serena_config.yml
-ln -sf "$DOTFILES_DIR/serena/serena_config.yml" ~/.serena/serena_config.yml
-echo "✓ Serena config linked"
+# Claude Code skills
+backup_if_exists ~/.claude/skills
+ln -sf "$DOTFILES_DIR/claude/skills" ~/.claude/skills
+echo "✓ Claude Code skills linked"
 
 # Claude Code plugins
 if command -v claude &> /dev/null && [ -f "$DOTFILES_DIR/claude/plugins.txt" ]; then

@@ -65,6 +65,12 @@ backup_if_exists ~/.claude/settings.json
 ln -sf "$DOTFILES_DIR/claude/settings.json" ~/.claude/settings.json
 echo "✓ Claude Code config linked"
 
+# Serena
+mkdir -p ~/.serena
+backup_if_exists ~/.serena/serena_config.yml
+ln -sf "$DOTFILES_DIR/serena/serena_config.yml" ~/.serena/serena_config.yml
+echo "✓ Serena config linked"
+
 # Claude Code plugins
 if command -v claude &> /dev/null && [ -f "$DOTFILES_DIR/claude/plugins.txt" ]; then
     while read -r plugin; do

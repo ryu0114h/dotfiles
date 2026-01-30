@@ -73,7 +73,7 @@ echo "✓ Claude Code config linked"
 
 # Claude Code skills
 backup_if_exists ~/.claude/skills
-ln -sf "$DOTFILES_DIR/claude/skills" ~/.claude/skills
+ln -sfn "$DOTFILES_DIR/claude/skills" ~/.claude/skills
 echo "✓ Claude Code skills linked"
 
 # Claude Code plugins

@@ -65,6 +65,11 @@ backup_if_exists ~/.claude/settings.json
 ln -sf "$DOTFILES_DIR/claude/settings.json" ~/.claude/settings.json
 echo "✓ Claude Code config linked"
 
+# Claude Code skills
+backup_if_exists ~/.claude/skills
+ln -sf "$DOTFILES_DIR/claude/skills" ~/.claude/skills
+echo "✓ Claude Code skills linked"
+
 # Claude Code plugins
 if command -v claude &> /dev/null && [ -f "$DOTFILES_DIR/claude/plugins.txt" ]; then
     while read -r plugin; do

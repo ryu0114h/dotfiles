@@ -59,6 +59,12 @@ backup_if_exists ~/.config/mise/config.toml
 ln -sf "$DOTFILES_DIR/mise/config.toml" ~/.config/mise/config.toml
 echo "✓ mise config linked"
 
+# Serena
+mkdir -p ~/.serena
+backup_if_exists ~/.serena/serena_config.yml
+ln -sf "$DOTFILES_DIR/serena/serena_config.yml" ~/.serena/serena_config.yml
+echo "✓ Serena config linked"
+
 # Claude Code
 mkdir -p ~/.claude
 backup_if_exists ~/.claude/settings.json
@@ -67,7 +73,7 @@ echo "✓ Claude Code config linked"
 
 # Claude Code skills
 backup_if_exists ~/.claude/skills
-ln -sf "$DOTFILES_DIR/claude/skills" ~/.claude/skills
+ln -sfn "$DOTFILES_DIR/claude/skills" ~/.claude/skills
 echo "✓ Claude Code skills linked"
 
 # Claude Code plugins

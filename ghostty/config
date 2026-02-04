@@ -11,6 +11,9 @@ background-blur-radius = 20
 # ウィンドウ状態を保存（次回起動時に復元）
 window-save-state = always
 
+# 新しいタブ/ウィンドウで前の作業ディレクトリを継承
+window-inherit-working-directory = true
+
 # Quick Terminal（どこからでも F12 で呼び出し）
 keybind = global:f12=toggle_quick_terminal
 

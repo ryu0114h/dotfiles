@@ -76,6 +76,12 @@ backup_if_exists ~/.claude/skills
 ln -sfn "$DOTFILES_DIR/claude/skills" ~/.claude/skills
 echo "✓ Claude Code skills linked"
 
+# Agent skills (shared across Cursor, Gemini CLI, Kiro CLI, Windsurf, etc.)
+mkdir -p ~/.agents
+backup_if_exists ~/.agents/skills
+ln -sfn "$DOTFILES_DIR/claude/skills" ~/.agents/skills
+echo "✓ Agent skills linked"
+
 # Claude Code plugins
 if command -v claude &> /dev/null && [ -f "$DOTFILES_DIR/claude/plugins.txt" ]; then
     while read -r plugin; do

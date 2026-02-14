@@ -24,5 +24,13 @@
     // デフォルト無効化: シンボル検索
     "key": "ctrl+t",
     "command": "-workbench.action.showAllSymbols"
+  },
+  // --------------------------------------------------
+  // 新しいターミナルを開く (ctrl+shift+n)
+  // --------------------------------------------------
+  {
+    "key": "ctrl+shift+n",
+    "command": "workbench.action.quickOpenTerm",
+    "when": "terminalFocus"
   }
 ]

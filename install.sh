@@ -59,6 +59,17 @@ backup_if_exists ~/.config/mise/config.toml
 ln -sf "$DOTFILES_DIR/mise/config.toml" ~/.config/mise/config.toml
 echo "✓ mise config linked"
 
+# Cursor / VSCode (shared keybindings)
+CURSOR_USER_DIR="$HOME/Library/Application Support/Cursor/User"
+VSCODE_USER_DIR="$HOME/Library/Application Support/Code/User"
+for user_dir in "$CURSOR_USER_DIR" "$VSCODE_USER_DIR"; do
+    if [ -d "$user_dir" ]; then
+        backup_if_exists "$user_dir/keybindings.json"
+        ln -sf "$DOTFILES_DIR/cursor/keybindings.json" "$user_dir/keybindings.json"
+    fi
+done
+echo "✓ Cursor/VSCode keybindings linked"
+
 # Serena
 mkdir -p ~/.serena
 backup_if_exists ~/.serena/serena_config.yml

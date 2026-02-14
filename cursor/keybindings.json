@@ -1,0 +1,28 @@
+[
+  // --------------------------------------------------
+  // ターミナル切替 (ctrl+t)
+  // --------------------------------------------------
+  {
+    // エディタ → ターミナルにフォーカス
+    "key": "ctrl+t",
+    "command": "workbench.action.terminal.focus",
+    "when": "!terminalFocus"
+  },
+  {
+    // ターミナル → エディタにフォーカス
+    "key": "ctrl+t",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "terminalFocus"
+  },
+  {
+    // デフォルト無効化: 文字の入れ替え
+    "key": "ctrl+t",
+    "command": "-editor.action.transposeLetters",
+    "when": "textInputFocus && !editorReadonly"
+  },
+  {
+    // デフォルト無効化: シンボル検索
+    "key": "ctrl+t",
+    "command": "-workbench.action.showAllSymbols"
+  }
+]

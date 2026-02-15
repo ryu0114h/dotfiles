@@ -59,6 +59,14 @@ backup_if_exists ~/.config/mise/config.toml
 ln -sf "$DOTFILES_DIR/mise/config.toml" ~/.config/mise/config.toml
 echo "✓ mise config linked"
 
+# yazi
+mkdir -p ~/.config/yazi
+for f in yazi.toml keymap.toml theme.toml; do
+    backup_if_exists ~/.config/yazi/$f
+    ln -sf "$DOTFILES_DIR/yazi/$f" ~/.config/yazi/$f
+done
+echo "✓ yazi config linked"
+
 # Cursor / VSCode (shared keybindings)
 CURSOR_USER_DIR="$HOME/Library/Application Support/Cursor/User"
 VSCODE_USER_DIR="$HOME/Library/Application Support/Code/User"

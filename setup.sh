@@ -58,6 +58,79 @@ else
     echo "✓ zoxide already installed"
 fi
 
+# yazi
+if ! command -v yazi &> /dev/null; then
+    echo "Installing yazi..."
+    brew install yazi
+else
+    echo "✓ yazi already installed"
+fi
+
+# yazi dependencies
+# ffmpeg (video thumbnails)
+if ! command -v ffmpeg &> /dev/null; then
+    echo "Installing ffmpeg..."
+    brew install ffmpeg
+else
+    echo "✓ ffmpeg already installed"
+fi
+
+# 7-Zip (archive extraction/preview)
+if ! command -v 7zz &> /dev/null; then
+    echo "Installing 7-Zip..."
+    brew install sevenzip
+else
+    echo "✓ 7-Zip already installed"
+fi
+
+# jq (JSON preview)
+if ! command -v jq &> /dev/null; then
+    echo "Installing jq..."
+    brew install jq
+else
+    echo "✓ jq already installed"
+fi
+
+# poppler (PDF preview)
+if ! command -v pdftotext &> /dev/null; then
+    echo "Installing poppler..."
+    brew install poppler
+else
+    echo "✓ poppler already installed"
+fi
+
+# fd (file searching)
+if ! command -v fd &> /dev/null; then
+    echo "Installing fd..."
+    brew install fd
+else
+    echo "✓ fd already installed"
+fi
+
+# ripgrep (file content searching)
+if ! command -v rg &> /dev/null; then
+    echo "Installing ripgrep..."
+    brew install ripgrep
+else
+    echo "✓ ripgrep already installed"
+fi
+
+# resvg (SVG preview)
+if ! command -v resvg &> /dev/null; then
+    echo "Installing resvg..."
+    brew install resvg
+else
+    echo "✓ resvg already installed"
+fi
+
+# ImageMagick (Font/HEIC/JPEG XL preview)
+if ! command -v magick &> /dev/null; then
+    echo "Installing ImageMagick..."
+    brew install imagemagick
+else
+    echo "✓ ImageMagick already installed"
+fi
+
 # mise
 if ! command -v mise &> /dev/null; then
     echo "Installing mise..."

@@ -11,7 +11,7 @@ backup_if_exists() {
     fi
 }
 
-echo "=== dotfiles install ==="
+echo "=== dotfiles link ==="
 
 # Ghostty
 mkdir -p ~/.config/ghostty
@@ -28,6 +28,8 @@ echo "✓ Starship config linked"
 # Git
 backup_if_exists ~/.gitconfig
 ln -sf "$DOTFILES_DIR/git/.gitconfig" ~/.gitconfig
+backup_if_exists ~/.gitignore
+ln -sf "$DOTFILES_DIR/git/.gitignore" ~/.gitignore
 echo "✓ Git config linked"
 
 # tmux

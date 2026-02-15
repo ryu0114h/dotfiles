@@ -17,5 +17,8 @@ brew "ripgrep"      # file content searching
 brew "resvg"        # SVG preview
 brew "imagemagick"  # Font/HEIC/JPEG XL preview
 
+# Fonts
+cask "font-hack-nerd-font"
+
 # Dev tools
 brew "mise"

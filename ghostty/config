@@ -1,4 +1,5 @@
 theme = Dracula
+font-family = Hack Nerd Font
 macos-titlebar-style = tabs
 
 # 選択時に自動でクリップボードにコピー

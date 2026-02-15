@@ -46,6 +46,15 @@ eval "$(fzf --zsh)"
 # zoxide (smart cd)
 eval "$(zoxide init zsh)"
 
+# yazi (cd on exit)
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	command yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
+
 # Starship prompt
 eval "$(starship init zsh)"
 

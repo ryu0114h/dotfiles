@@ -9,9 +9,9 @@
     "when": "!terminalFocus"
   },
   {
-    // ターミナル → エディタにフォーカス
+    // ターミナル → パネルを閉じてエディタに戻る
     "key": "ctrl+t",
-    "command": "workbench.action.focusActiveEditorGroup",
+    "command": "workbench.action.togglePanel",
     "when": "terminalFocus"
   },
   {

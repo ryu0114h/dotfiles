@@ -26,6 +26,32 @@
     "command": "-workbench.action.showAllSymbols"
   },
   // --------------------------------------------------
+  // 実装 (ctrl+i / ctrl+shift+i)
+  // --------------------------------------------------
+  {
+    "key": "ctrl+i",
+    "command": "editor.action.goToImplementation",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+i",
+    "command": "references-view.findImplementations",
+    "when": "editorTextFocus"
+  },
+  // --------------------------------------------------
+  // 参照 (ctrl+r / ctrl+shift+r)
+  // --------------------------------------------------
+  {
+    "key": "ctrl+r",
+    "command": "editor.action.goToReferences",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+r",
+    "command": "references-view.findReferences",
+    "when": "editorTextFocus"
+  },
+  // --------------------------------------------------
   // 新しいターミナルを開く (ctrl+shift+n)
   // --------------------------------------------------
   {
